@@ -37,6 +37,26 @@ class Resource {
      * @param {Function} callback 
      */
     load(callback) {
+        const resources = this.resources;
+        if (resources.length === 0) {
+            callback(this);
+        } else {
+            const resource = resources.pop();
+            const name = resource.name;
+            const url = resource.url;
+            if (/(\.gif|\.png|\.jpg|\.jpeg)$/gi.test(url)) {
+                const image = new Image;
+                image.onload = () => {
+                    this.cache.set(name, image);
+                    this.load(callback);
+                };
+                image.src = url;
+            } else if (/(\.json)$/gi.test(url)) {
+
+            } else if (/(\.mp3|\.ogg|\.wav)$/gi.test(url)) {
+
+            }
+        }
     }
 }
 
