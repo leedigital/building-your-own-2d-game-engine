@@ -6,7 +6,6 @@ RESOURCE
     .add("./res/assets/spritesheet/player/spritesheet.json")
     .load((resource) => {
         const game = GAME.create();
-        
     });
 
 // console.log(RESOURCE);

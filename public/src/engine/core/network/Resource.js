@@ -47,7 +47,7 @@ class Resource {
              * @type {String}
              */
             const url = resource.url;
-            if (/(\.gif|\.png|\.jpg|\.jpeg)$/gi.test(url)) {
+            if (/\.(gif|png|jpg|jpeg)$/gi.test(url)) {
                 const res = await fetch(url);
                 const blob = await res.blob();
                 const uri = URL.createObjectURL(blob);
@@ -57,7 +57,7 @@ class Resource {
                     this.load(callback);
                 };
                 image.src = uri;
-            } else if (/(\.json)$/gi.test(url)) {
+            } else if (/\.(json)$/gi.test(url)) {
                 const res = await fetch(url);
                 const json = await res.json();
                 const frames = json.frames;
@@ -86,7 +86,7 @@ class Resource {
                     image.src = uri;
                 }
 
-            } else if (/(\.mp3|\.ogg|\.wav)$/gi.test(url)) {
+            } else if (/\.(mp3|ogg|wav)$/gi.test(url)) {
 
             }
         }

@@ -1,3 +1,5 @@
+import { TIME } from "./Time.js";
+
 class Game {
 
     constructor() {
@@ -23,6 +25,7 @@ class Game {
         options = {
             backgroundColor: "#fff"
         }) {
+        TIME.elapsed = performance.now();
         const bodyStyle = document.body.style;
         bodyStyle.margin = "0";
         bodyStyle.padding = "0";
@@ -35,7 +38,7 @@ class Game {
         this.renderingContext = canvas.getContext("2d");
         document.body.appendChild(canvas);
         requestAnimationFrame((time) => {
-            this.loop(time, this.renderingContext);
+            this.loop(time, this.renderingContext, width, height);
         });
         return this;
     }
@@ -44,11 +47,15 @@ class Game {
      * 
      * @param {Number} time 
      * @param {RenderingContext} renderingContext 
+     * @param {Number} width
+     * @param {Number} height
      */
-    loop(time, renderingContext) {
+    loop(time, renderingContext, width, height) {
         requestAnimationFrame((time) => {
-            this.loop(time, renderingContext);
+            this.loop(time, renderingContext, width, height);
         });
+        renderingContext.clearRect(0, 0, width, height);
+        TIME.loop(time);
     }
 
 }
